@@ -10,7 +10,7 @@ const defaultTodos = [
   { text: 'Cortar cebolla',
     completed: false },
   {text: 'Tomar el curso de React',
-   completed: true},
+   completed: false},
   {text: 'Comprar pan',
   completed: true}
 ];
@@ -32,8 +32,23 @@ function App() {
       const searchText = searchValue.toLowerCase();
       return todoText.includes(searchText);
     });
-
   }
+
+  const completeTodos = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+    };
+
+  const deleteTodos = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
+    };
 
   return (
      <React.Fragment> 
@@ -51,12 +66,15 @@ function App() {
             key = {todo.text} 
             text={todo.text}
             completed={todo.completed} 
+            onComplete={() => completeTodos(todo.text)}
+            onDelete={() => deleteTodos(todo.text)}
+
             />
           ))}
         </TodoList>
        <CreateTodoButton />
     </React.Fragment> 
   );
-}
+};
 
 export default App;
