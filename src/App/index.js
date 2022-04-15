@@ -17,8 +17,6 @@ import { AppUI } from "./AppUI.js";
 
 function App() {
   
-
-
   return (
     <TodoProvider>
       <AppUI/>
