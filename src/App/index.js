@@ -1,7 +1,16 @@
-import React from "react";
-import { TodoProvider } from './components/TodoContext/index'
-import { AppUI } from "./AppUI.js";
-
+import React from 'react';
+import { useTodos } from './useTodos' 
+import { TodoHeader } from './components/TodoHeader/';
+import { TodoCounter } from './components/TodoCounter';
+import { TodoSearch } from './components/TodoSearch';
+import { TodoList } from "./components/TodoList";
+import { TodoItem } from "./components/TodoItem";
+import { CreateTodoButton } from "./components/createButton";
+import { Modal } from './components/Modal';
+import { TodoForm } from './components/TodoForm'
+import { TodosError } from './components/TodosError';
+import { TodosLoading } from './components/TodosLoading';
+import { EmptyTodos } from './components/EmptyTodos';
 /* const defaultTodos = [
   { text: 'Cortar cebolla',
     completed: false },
@@ -11,61 +20,67 @@ import { AppUI } from "./AppUI.js";
   completed: true}
 ]; */
 
+
 function App() {
-  const [state, setState] = React.useState('Estado compartido');
-
-  return (
-      <React.Fragment>
-        <TodoHeader>
-          <TodoCounter/>
-          <TodoSearch/>
-        </TodoHeader>
-
-        <TodoList>
-          <TodoItem state={state} />
-        </TodoList>
-      </React.Fragment>
-  )  
-}
-function TodoHeader({ children }) {
-  return (
-    <header>
-      {children}
-    </header>
-  )
-}
-function TodoList({ children }) {
-  return (
-    <section className="TodoList-container">
-      {children}
-    </section>
-  )
-}
-function TodoCounter() {
-
-  return (
-    <p>TodoCounter</p>
-  )
-}
-function TodoSearch() {
-  return (
-    <p>TodoSearch</p>
-  )
-}
-function TodoItem({ state }) {
-  return (
-    <p>TodoItem {state}</p>
-  )
-}
-
-
-/* function App() {
+  const { 
+    error, 
+    loading, 
+    searchedTodos, 
+    toggleTodos,
+    addTodos,
+    deleteTodos,
+    openModal,
+    setOpenModal,
+    totalTodos,
+    completedTodos,
+    searchValue, 
+    setSearchValue
+  } = useTodos();
   
   return (
-    <TodoProvider>
-      <AppUI/>
-    </TodoProvider>
+    <React.Fragment> 
+      <TodoHeader>
+        <TodoCounter 
+          totalTodos={totalTodos} 
+          completedTodos={completedTodos} 
+          />
+        <TodoSearch
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
+      </TodoHeader>
+
+      <TodoList>
+        {error && <TodosError error={error} />}
+        {loading && <TodosLoading />}
+        {(!loading && !searchedTodos.length) && <EmptyTodos />}
+
+        {searchedTodos.map(todo => (<TodoItem 
+          key = {todo.text} 
+          text={todo.text}
+          completed={todo.completed} 
+          onComplete={() => toggleTodos(todo.text)}
+          onDelete={() => deleteTodos(todo.text)}
+
+          />
+        ))}
+      </TodoList>
+
+      {!!openModal && (
+        <Modal>
+          <TodoForm 
+            addTodos={addTodos}
+            setOpenModal={setOpenModal}
+          />
+        </Modal>
+      )}
+
+      <CreateTodoButton
+        setOpenModal={setOpenModal}
+        openModal={openModal}
+      />
+    </React.Fragment>
   );
-}; */
+};
 
 export default App;
