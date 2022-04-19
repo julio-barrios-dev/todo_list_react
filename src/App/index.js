@@ -50,7 +50,25 @@ function App() {
         />
       </TodoHeader>
 
-      <TodoList>
+      <TodoList
+        error={error} 
+        loading={loading}
+        searchedTodos={searchedTodos}
+        onError={() => <TodosError />}
+        onLoading={() => <TodosLoading />}
+        onEmptyTodos={() => <EmptyTodos />}
+        render={todo => (
+          <TodoItem 
+            key = {todo.text} 
+            text={todo.text}
+            completed={todo.completed} 
+            onComplete={() => toggleTodos(todo.text)}
+            onDelete={() => deleteTodos(todo.text)} 
+          />
+         )}
+      />
+
+{/*       <TodoList>
         {error && <TodosError error={error} />}
         {loading && <TodosLoading />}
         {(!loading && !searchedTodos.length) && <EmptyTodos />}
@@ -64,7 +82,7 @@ function App() {
 
           />
         ))}
-      </TodoList>
+      </TodoList> */}
 
       {!!openModal && (
         <Modal>
