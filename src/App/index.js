@@ -11,7 +11,7 @@ import { TodoForm } from './components/TodoForm'
 import { TodosError } from './components/TodosError';
 import { TodosLoading } from './components/TodosLoading';
 import { EmptyTodos } from './components/EmptyTodos';
-import { ChangeAlertWithStorageListener } from './components/ChangeAlert';
+import { ChangeAlert } from './components/ChangeAlert';
 
 
 
@@ -77,7 +77,7 @@ function App() {
             onComplete={() => toggleTodos(todo.text)}
             onDelete={() => deleteTodos(todo.text)} 
           />
-         )}
+        )}
       </TodoList>
 
 {/*       <TodoList>
@@ -109,7 +109,7 @@ function App() {
         setOpenModal={setOpenModal}
         openModal={openModal}
       />
-      <ChangeAlertWithStorageListener
+      <ChangeAlert
         sincronize={sincronizeTodos}
       />
     </React.Fragment>
