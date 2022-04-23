@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
+import App from './App';
 
-function App(props) {
+// Ejemplo de High Order Components
+/* function App(props) {
   return (
     <h1>{props.saludo}, {props.nombre}!</h1>
   );
@@ -20,14 +21,14 @@ function withSaludo(WrappedComponent) {
       )
     }
   }
-}
+} */
 
 
-const AppWithSaludo = withSaludo(App)("Holaa");
+// const AppWithSaludo = withSaludo(App)("Holaa"); Ejemplo de High Order Components
 
 ReactDOM.render(
-  <AppWithSaludo nombre="Mau"  />,
-  // <App saludo="Hola" nombre="Mau" />,
+  // <AppWithSaludo nombre="Mau"  />, Ejemplo de High Order Components
+  <App saludo="Hola" nombre="Mau" />,
   document.getElementById('root')
 );
 

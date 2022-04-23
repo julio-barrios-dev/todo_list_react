@@ -7,6 +7,7 @@ function useTodos() {
     item :todos, 
     saveItem :saveTodos, 
     loading,
+    sincronizeItem: sincronizeTodos ,
     error } = useLocalStorage('TODOS_V1', []);
      
 
@@ -66,7 +67,8 @@ function useTodos() {
     toggleTodos,
     deleteTodos,
     openModal,
-    setOpenModal
+    setOpenModal,
+    sincronizeTodos
   };
 }
 

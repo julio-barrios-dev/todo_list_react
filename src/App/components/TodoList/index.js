@@ -1,5 +1,4 @@
 import react from "react";
-import { render } from "react-dom";
 import './TodoList.css';
 
 function TodoList(props){
@@ -15,7 +14,7 @@ function TodoList(props){
 
                 {(!!props.totalTodos && !props.searchedTodos.length) && props.onEmptySearchResults(props.searchText)}
 
-                {props.searchedTodos.map(renderFunc)}
+                {(!props.loading && !props.error) && props.searchedTodos.map(renderFunc)}
             </ul>
         </section>
     );
