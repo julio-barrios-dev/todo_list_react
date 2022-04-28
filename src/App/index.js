@@ -13,8 +13,6 @@ import { TodosLoading } from './components/TodosLoading';
 import { EmptyTodos } from './components/EmptyTodos';
 import { ChangeAlert } from './components/ChangeAlert';
 
-
-
 function App() {
   const { 
     error, 
