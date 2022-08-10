@@ -65,15 +65,6 @@ function App() {
         onEmptySearchResults={
           (searchText) => <p>No hay resultados para {searchText}</p>
         }
-        /* render={todo => (
-          <TodoItem 
-            key = {todo.text} 
-            text={todo.text}
-            completed={todo.completed} 
-            onComplete={() => toggleTodos(todo.text)}
-            onDelete={() => deleteTodos(todo.text)} 
-          />
-         )} */
       >
         {todo => (
           <TodoItem 
