@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTodos } from './useTodos' 
+import { useTodos } from './hooks/useTodos' 
 import { TodoHeader } from './components/TodoHeader/';
 import { TodoCounter } from './components/TodoCounter';
 import { TodoSearch } from './components/TodoSearch';
@@ -38,8 +38,6 @@ function App() {
     sincronizeTodos
   } = stateUpdates
 
-
-  
   return (
     <React.Fragment> 
       <TodoHeader loading={loading}>
@@ -76,22 +74,6 @@ function App() {
           />
         )}
       </TodoList>
-
-{/*       <TodoList>
-        {error && <TodosError error={error} />}
-        {loading && <TodosLoading />}
-        {(!loading && !searchedTodos.length) && <EmptyTodos />}
-
-        {searchedTodos.map(todo => (<TodoItem 
-          key = {todo.text} 
-          text={todo.text}
-          completed={todo.completed} 
-          onComplete={() => toggleTodos(todo.text)}
-          onDelete={() => deleteTodos(todo.text)}
-
-          />
-        ))}
-      </TodoList> */}
 
       {!!openModal && (
         <Modal>

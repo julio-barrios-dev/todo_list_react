@@ -15,7 +15,11 @@ function TodoForm({
   };
   const onSubmit = (event) => {
     event.preventDefault(); //Evita que la pagina se recargue
-    addTodos(newTodoValue);
+    if (newTodoValue !== '') {
+      addTodos(newTodoValue);
+      setOpenModal(false);
+      return null;
+    }
     setOpenModal(false);
   };
 
